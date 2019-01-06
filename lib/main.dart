@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:poker_trax_2/SessionListTile.dart';
+
+import 'SessionListView.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,16 +22,13 @@ class MyApp extends StatelessWidget {
           body: Center(
               child: Column(children: [
                 Expanded(
-                    child: ListView(
-                      children: <Widget>[
-                        SessionListTile(),
-                        SessionListTile(),
-                        SessionListTile(),
-                      ],
-                    ))
+                  child: SessionListView(),
+                )
               ])),
           floatingActionButton: FloatingActionButton(
-            onPressed: null,
+            onPressed: () {
+              print('clicked');
+            },
             child: Icon(Icons.add),
           ),
         ));

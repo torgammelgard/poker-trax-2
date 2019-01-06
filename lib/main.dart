@@ -11,23 +11,28 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           brightness: Brightness.light,
           primarySwatch: Colors.blue,
-          accentColor: Colors.redAccent,
+          accentColor: Colors.pinkAccent,
         ),
         home: Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-              title: Text('Poker Trax 2'),
-            ),
-            body: Center(
-                child: Column(children: [
-              Expanded(
-                  child: ListView(
-                children: <Widget>[
-                  SessionListTile(),
-                  SessionListTile(),
-                  SessionListTile(),
-                ],
-              ))
-            ]))));
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            title: Text('Poker Trax 2'),
+          ),
+          body: Center(
+              child: Column(children: [
+                Expanded(
+                    child: ListView(
+                      children: <Widget>[
+                        SessionListTile(),
+                        SessionListTile(),
+                        SessionListTile(),
+                      ],
+                    ))
+              ])),
+          floatingActionButton: FloatingActionButton(
+            onPressed: null,
+            child: Icon(Icons.add),
+          ),
+        ));
   }
 }

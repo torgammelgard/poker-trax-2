@@ -8,7 +8,11 @@ class SessionListTile extends StatelessWidget {
       subtitle: Text(
         'Subtitle goes here',
       ),
-      leading: Icon(const IconData(0xeb3b, fontFamily: 'MaterialIcons')),
+      leading: CircleAvatar(
+          backgroundColor: Colors.grey,
+          child: Image(
+            image: AssetImage('assets/graph.png'),
+          )),
       trailing: Icon(const IconData(0xe3c9, fontFamily: 'MaterialIcons')),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 import 'SessionListView.dart';
 
@@ -14,23 +15,46 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           accentColor: Colors.pinkAccent,
         ),
-        home: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            title: Text('Poker Trax 2'),
-          ),
-          body: Center(
-              child: Column(children: [
-                Expanded(
-                  child: SessionListView(),
-                )
-              ])),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              print('clicked');
-            },
-            child: Icon(Icons.add),
-          ),
-        ));
+        home: ScopedModel<TestModel>(
+            model: TestModel(),
+            child: Scaffold(
+              backgroundColor: Colors.white,
+              appBar: AppBar(
+                title: Text('Poker Trax 2'),
+              ),
+              body: Center(
+                  child: Column(children: [
+                    Expanded(
+                      child: SessionListView(),
+                    ),
+                    Expanded(
+                        child: ScopedModelDescendant<TestModel>(
+                          builder: (context, child, model) =>
+                              Text(model.counter.toString()),)
+                    )
+                  ])),
+              floatingActionButton: ScopedModelDescendant<TestModel>(
+                builder: (context, child, model) =>
+                    FloatingActionButton(
+                      onPressed: () {
+                        model.increment();
+                      },
+                      tooltip: 'Increment',
+                      child: Icon(Icons.add),
+                    ),
+              ),
+            )));
+  }
+}
+
+class TestModel extends Model {
+  int _counter = 0;
+
+  int get counter => _counter;
+
+  void increment() {
+    _counter++;
+    print(_counter);
+    notifyListeners();
   }
 }

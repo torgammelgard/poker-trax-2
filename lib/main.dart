@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
                     Expanded(
                         child: ScopedModelDescendant<TestModel>(
                           builder: (context, child, model) =>
-                              Text(model.counter.toString()),)
-                    )
+                              Text(model.counter.toString()),
+                        ))
                   ])),
               floatingActionButton: ScopedModelDescendant<TestModel>(
                 builder: (context, child, model) =>

@@ -19,10 +19,9 @@ class SessionListView extends StatelessWidget {
             title: Text(sessions[index].result.toString()),
             subtitle: Text(sessions[index].location),
             leading: CircleAvatar(
-                backgroundColor: Colors.grey,
-                child: Image(
-                  image: AssetImage('assets/graph.png'),
-                )),
+              backgroundColor: Colors.grey,
+              child: Image.asset("assets/graph.png"),
+            ),
             trailing: Icon(const IconData(0xe3c9, fontFamily: 'MaterialIcons')),
           );
         });

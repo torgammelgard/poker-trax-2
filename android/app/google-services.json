@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1099291804909",
+    "firebase_url": "https://pokertrax2.firebaseio.com",
+    "project_id": "pokertrax2",
+    "storage_bucket": "pokertrax2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1099291804909:android:033d7847e3576e8e",
+        "android_client_info": {
+          "package_name": "se.torgammelgard.pokertrax2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1099291804909-h66371lbmro3qdd2g5sv7cjr9gtl4esr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2IjRNJ37_roY7e6z8fFt_JYVbWWfSj9I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1099291804909-h66371lbmro3qdd2g5sv7cjr9gtl4esr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

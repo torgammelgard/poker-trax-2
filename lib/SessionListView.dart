@@ -1,29 +1,30 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'Session.dart';
-
 class SessionListView extends StatelessWidget {
-  final List<Session> sessions = [
-    Session(result: 120, location: 'Commerce Casino'),
-    Session(result: -10, location: 'Commerce Casino'),
-    Session(result: 220, location: 'Commerce Casino'),
-    Session(result: -130, location: 'Commerce Casino'),
-  ];
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: sessions.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(sessions[index].result.toString()),
-            subtitle: Text(sessions[index].location),
-            leading: CircleAvatar(
-              backgroundColor: Colors.grey,
-              child: Image.asset("assets/graph.png"),
-            ),
-            trailing: Icon(const IconData(0xe3c9, fontFamily: 'MaterialIcons')),
-          );
-        });
+    return StreamBuilder<QuerySnapshot>(
+        stream: Firestore.instance.collection('sessions').snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (!snapshot.hasData) return const Text('Loading...');
+          return ListView.builder(
+              itemCount: snapshot.data.documents.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(
+                      snapshot.data.documents[index]['result'].toString()),
+                  subtitle: Text(snapshot.data.documents[index]['location']),
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.grey,
+                    child: Image.asset("assets/graph.png"),
+                  ),
+                  trailing: Icon(
+                      const IconData(0xe3c9, fontFamily: 'MaterialIcons')),
+                );
+              });
+        }
+    );
   }
 }

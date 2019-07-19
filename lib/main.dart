@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import './Session.dart';
+import './AddSessionForm.dart';
 import './SessionListView.dart';
 
 void main() => runApp(MyApp());
@@ -36,9 +36,12 @@ class HomePage extends StatelessWidget {
             ),
           ])),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          final Session session = Session(result: 1, location: 'dummy');
-          Firestore.instance.collection('sessions')
+        onPressed: () async {
+          final session = await Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AddSessionForm()));
+          Firestore.instance
+              .collection('sessions')
               .add(session.getMap())
               .catchError((e) {
             print(e);

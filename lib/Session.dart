@@ -1,6 +1,10 @@
 class Session {
-  final int result;
-  final String location;
+  int result;
+  String location;
 
-  const Session({this.result, this.location}) : assert(location != null);
+  Session({this.result, this.location});
+
+  Map<String, dynamic> getMap() {
+    return {'result': result, 'location': location};
+  }
 }

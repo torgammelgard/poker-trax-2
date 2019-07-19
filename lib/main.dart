@@ -1,7 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import './Counter.dart';
+import './Session.dart';
 import './SessionListView.dart';
 
 void main() => runApp(MyApp());
@@ -10,23 +10,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Poker Trax 2',
-        theme: ThemeData(
-          brightness: Brightness.light,
-          primarySwatch: Colors.blue,
-          accentColor: Colors.pinkAccent,
-        ),
-        home: ChangeNotifierProvider<Counter>(
-          builder: (_) => Counter(0),
-          child: HomePage(),
-        ));
+      title: 'Poker Trax 2',
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primarySwatch: Colors.blue,
+        accentColor: Colors.pinkAccent,
+      ),
+      home: HomePage(),
+    );
   }
 }
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final counter = Provider.of<Counter>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -37,13 +34,17 @@ class HomePage extends StatelessWidget {
             Expanded(
               child: SessionListView(),
             ),
-            Expanded(
-              child: Text(counter.getCounter().toString()),
-            )
           ])),
       floatingActionButton: FloatingActionButton(
-        onPressed: counter.increment,
-        tooltip: 'Increment',
+        onPressed: () {
+          final Session session = Session(result: 1, location: 'dummy');
+          Firestore.instance.collection('sessions')
+              .add(session.getMap())
+              .catchError((e) {
+            print(e);
+          });
+        },
+        tooltip: 'Add session',
         child: Icon(Icons.add),
       ),
     );

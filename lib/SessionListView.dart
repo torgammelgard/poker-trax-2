@@ -8,7 +8,7 @@ class SessionListView extends StatelessWidget {
     return StreamBuilder<QuerySnapshot>(
         stream: Firestore.instance.collection('sessions').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData) return const Text('Loading...');
+          //if (!snapshot.hasData) return const Text('Loading...');
           return ListView.builder(
               itemCount: snapshot.data.documents.length,
               itemBuilder: (context, index) {

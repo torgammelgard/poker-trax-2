@@ -1,5 +1,7 @@
 {
   "title": "Poker Trax 2",
   "add_session": "Add session",
-  "flushbar_message": "Hello from a Flushbar"
+  "btn_press_me": "Press me",
+  "flushbar_message": "Hello from a Flushbar",
+  "click_me": "Click Me"
 }

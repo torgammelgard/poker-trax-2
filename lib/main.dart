@@ -1,7 +1,6 @@
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:poker_trax_2/AddSession.dart';
-import 'package:scoped_model/scoped_model.dart';
 
 import 'SessionListView.dart';
 
@@ -9,7 +8,7 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext ctx) {
+  Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Poker Trax 2',
         theme: ThemeData(
@@ -17,35 +16,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           accentColor: Colors.pinkAccent,
         ),
-        home: ScopedModel<TestModel>(
-            model: TestModel(),
-            child: Scaffold(
-              backgroundColor: Colors.white,
-              appBar: AppBar(
-                title: Text('Poker Trax 2'),
-              ),
-              body: Center(
-                  child: Column(children: [
-                Expanded(
-                  child: SessionListView(),
-                ),
-                Expanded(
-                    child: ScopedModelDescendant<TestModel>(
-                  builder: (context, child, model) =>
-                      Text(model.counter.toString()),
-                ))
-              ])),
-              floatingActionButton: ScopedModelDescendant<TestModel>(
-                builder: (context, child, model) => FloatingActionButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => AddSession()));
-                  },
-                  tooltip: 'Increment',
-                  child: Icon(Icons.add),
-                ),
-              ),
-            )));
+        home: HomeScreen());
   }
 
   void show_Simple_Flushbar(BuildContext context) {
@@ -69,14 +40,29 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class TestModel extends Model {
-  int _counter = 0;
+class HomeScreen extends StatelessWidget {
 
-  int get counter => _counter;
-
-  void increment() {
-    _counter++;
-    print(_counter);
-    notifyListeners();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text('Poker Trax 2'),
+      ),
+      body: Center(
+          child: Column(children: [
+            Expanded(
+              child: SessionListView(),
+            ),
+          ])),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => AddSession()));
+        },
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ),
+    );
   }
 }

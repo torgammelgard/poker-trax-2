@@ -1,3 +1,4 @@
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -7,7 +8,7 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext ctx) {
     return MaterialApp(
         title: 'Poker Trax 2',
         theme: ThemeData(
@@ -24,26 +25,45 @@ class MyApp extends StatelessWidget {
               ),
               body: Center(
                   child: Column(children: [
-                    Expanded(
-                      child: SessionListView(),
-                    ),
-                    Expanded(
-                        child: ScopedModelDescendant<TestModel>(
-                          builder: (context, child, model) =>
-                              Text(model.counter.toString()),)
-                    )
-                  ])),
+                Expanded(
+                  child: SessionListView(),
+                ),
+                Expanded(
+                    child: ScopedModelDescendant<TestModel>(
+                  builder: (context, child, model) =>
+                      Text(model.counter.toString()),
+                ))
+              ])),
               floatingActionButton: ScopedModelDescendant<TestModel>(
-                builder: (context, child, model) =>
-                    FloatingActionButton(
-                      onPressed: () {
-                        model.increment();
-                      },
-                      tooltip: 'Increment',
-                      child: Icon(Icons.add),
-                    ),
+                builder: (context, child, model) => FloatingActionButton(
+                  onPressed: () {
+                    show_Simple_Flushbar(context);
+                  },
+                  tooltip: 'Increment',
+                  child: Icon(Icons.add),
+                ),
               ),
             )));
+  }
+
+  void show_Simple_Flushbar(BuildContext context) {
+    Flushbar(
+      // There is also a messageText property for when you want to
+      // use a Text widget and not just a simple String
+      message: 'Hello from a Flushbar',
+      // Even the button can be styled to your heart's content
+      mainButton: FlatButton(
+        child: Text(
+          'Click Me',
+          style: TextStyle(color: Theme.of(context).accentColor),
+        ),
+        onPressed: () {
+          print("Simple snackbar example");
+        },
+      ),
+      duration: Duration(seconds: 3),
+      // Show it with a cascading operator
+    )..show(context);
   }
 }
 

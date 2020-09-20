@@ -1,5 +1,6 @@
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:poker_trax_2/AddSession.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'SessionListView.dart';
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
               floatingActionButton: ScopedModelDescendant<TestModel>(
                 builder: (context, child, model) => FloatingActionButton(
                   onPressed: () {
-                    show_Simple_Flushbar(context);
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => AddSession()));
                   },
                   tooltip: 'Increment',
                   child: Icon(Icons.add),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class AddSession extends StatelessWidget {
@@ -5,7 +6,7 @@ class AddSession extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add session"),
+        title: Text('add_session'.tr()),
       ),
       body: Center(
         child: RaisedButton(

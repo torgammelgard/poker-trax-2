@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:poker_trax_2/AddSession.dart';
@@ -10,7 +11,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Poker Trax 2'),
+        title: Text('title'.tr()),
       ),
       body: Center(
           child: Column(children: [
@@ -33,7 +34,7 @@ class HomeScreen extends StatelessWidget {
     Flushbar(
       // There is also a messageText property for when you want to
       // use a Text widget and not just a simple String
-      message: 'Hello from a Flushbar',
+      message: 'flushbar_message'.tr(),
       // Even the button can be styled to your heart's content
       mainButton: FlatButton(
         child: Text(

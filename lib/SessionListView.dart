@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poker_trax_2/SessionScreen.dart';
 
 import 'Session.dart';
 
@@ -24,6 +25,9 @@ class SessionListView extends StatelessWidget {
                   image: AssetImage('assets/graph.png'),
                 )),
             trailing: Icon(const IconData(0xe3c9, fontFamily: 'MaterialIcons')),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SessionScreen(session: sessions[index],)));
+            },
           );
         });
   }

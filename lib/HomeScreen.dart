@@ -1,7 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:poker_trax_2/AddSession.dart';
+import 'package:poker_trax_2/SessionScreen.dart';
 
+import 'Session.dart';
 import 'SessionListView.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -21,7 +22,10 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AddSession()));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => SessionScreen(
+                      session: Session(result: 0, location: ""))));
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),
